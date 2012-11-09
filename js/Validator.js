@@ -1,5 +1,5 @@
 
-Kredito.Field.Validator = Backbone.Model.extend({
+Bv.Field.Validator = Backbone.Model.extend({
 	defaults:{
 		tooltip: null,
 		icon: null

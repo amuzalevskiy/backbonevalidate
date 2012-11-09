@@ -1,12 +1,12 @@
-Kredito = typeof Kredito !== 'undefined' ? Kredito : {};
+Bv = typeof Bv !== 'undefined' ? Bv : {};
 
-Kredito.Time = new Date();
+Bv.Time = new Date();
 /*
  * without time
  */
-Kredito.Today = new Date(Kredito.Time.getFullYear(), Kredito.Time.getMonth(), Kredito.Time.getDate());
+Bv.Today = new Date(Bv.Time.getFullYear(), Bv.Time.getMonth(), Bv.Time.getDate());
 
-Kredito.Field = Backbone.Model.extend({
+Bv.Field = Backbone.Model.extend({
 	defaults: {
 		dom: null,
 		value: undefined,
@@ -17,7 +17,7 @@ Kredito.Field = Backbone.Model.extend({
 		hasFocus: false,
 		wasBlur: false,
 		messages: [],
-		decorators: 'focus validateOnBlur',
+		decorators: 'focus',
 		fnIsEmpty: function(val) {
 			if (typeof val == 'undefined') {
 				return true;
@@ -98,7 +98,7 @@ Kredito.Field = Backbone.Model.extend({
 	},
 	addDecorator: function(decorator){
 		if($.isFunction(decorator.substring)){
-			decorator = new Kredito.Field.Decorator[decorator];
+			decorator = new Bv.Field.Decorator[decorator];
 		}
 		decorator.set({
 			field:this
@@ -109,7 +109,7 @@ Kredito.Field = Backbone.Model.extend({
 	},
 	addValidationRule: function(rule){
 		if($.isFunction(rule.substring)){
-			rule = new Kredito.Field.Validator.Rule[rule];
+			rule = new Bv.Field.Validator.Rule[rule];
 		}
 		
 		rule.set({
@@ -134,7 +134,7 @@ Kredito.Field = Backbone.Model.extend({
 	},
 	getGroup: function(){
 		if (typeof this.group == 'undefined') {
-			this.group = new Kredito.Field.Group({
+			this.group = new Bv.Field.Group({
 				dom: this.get('dom').parent().parent()
 			});
 		}
@@ -144,14 +144,14 @@ Kredito.Field = Backbone.Model.extend({
 		var subform;
 		if (subform = this.get('dom').parents('.fields-subform')) {
 			var subformName = subform.attr('data-subform-name');
-			if (typeof Kredito.Page.subform[subformName] == 'undefined') {
-				Kredito.Page.subform[subformName] = new Kredito.Field.Group({
+			if (typeof Bv.Page.subform[subformName] == 'undefined') {
+				Bv.Page.subform[subformName] = new Bv.Field.Group({
 					dom: subform?subform:$(document.body),
 					formName: subformName
 				});
 			}
-			this.subform = Kredito.Page.subform[subformName];
-			Kredito.Page.subform[subformName].field[this.get('dom').attr('name')] = this;
+			this.subform = Bv.Page.subform[subformName];
+			Bv.Page.subform[subformName].field[this.get('dom').attr('name')] = this;
 		}
 	},
 	setValue: function(value, validate){
@@ -168,11 +168,11 @@ Kredito.Field = Backbone.Model.extend({
 	}
 });
 
-Kredito.Field.Text = Kredito.Field;
+Bv.Field.Text = Bv.Field;
 
-Kredito.Field.Select = Kredito.Field;
+Bv.Field.Select = Bv.Field;
 
-Kredito.Field.Radio = Kredito.Field.extend({
+Bv.Field.Radio = Bv.Field.extend({
 	defaults: {
 		value: undefined,
 		name: undefined,
@@ -244,7 +244,7 @@ Kredito.Field.Radio = Kredito.Field.extend({
 	},
 	getGroup: function(){
 		if (typeof this.group == 'undefined') {
-			this.group = new Kredito.Field.Group({
+			this.group = new Bv.Field.Group({
 				dom: $(this.inputs[0]).parent().parent().parent()
 			});
 		}
@@ -272,7 +272,7 @@ Kredito.Field.Radio = Kredito.Field.extend({
 
 });
 
-Kredito.Field.Checkbox = Kredito.Field.extend({
+Bv.Field.Checkbox = Bv.Field.extend({
     defaults: {
         value: undefined,
         name: undefined,
@@ -359,7 +359,7 @@ Kredito.Field.Checkbox = Kredito.Field.extend({
 		}
 	});
 
-Kredito.Field.Group = Backbone.Model.extend({
+Bv.Field.Group = Backbone.Model.extend({
 	decoratorObjects: null,
 	field: null,
 	group: null,
@@ -375,7 +375,7 @@ Kredito.Field.Group = Backbone.Model.extend({
 	},
 	addDecorator: function(decorator){
 		if($.isFunction(decorator.substring)){
-			decorator = new Kredito.Field.Decorator[decorator];
+			decorator = new Bv.Field.Decorator[decorator];
 		}
 		decorator.set({
 			field:this,
@@ -391,21 +391,21 @@ Kredito.Field.Group = Backbone.Model.extend({
 				tooltip: this.addDecorator('errortooltip'),
 				icon: this.addDecorator('icon')
 			}
-			this.validator = new Kredito.Field.Validator(options);
+			this.validator = new Bv.Field.Validator(options);
 		}
 		return this.validator;
 	},
 	registerInSubform: function(){
 		var subform;
 		if (subform = this.get('dom').parents('.fields-subform')) {
-			if (typeof Kredito.Page.subform[subform.attr('data-subform-name')] == 'undefined') {
-				Kredito.Page.subform[subform.attr('data-subform-name')] = new Kredito.Field.Group({
+			if (typeof Bv.Page.subform[subform.attr('data-subform-name')] == 'undefined') {
+				Bv.Page.subform[subform.attr('data-subform-name')] = new Bv.Field.Group({
 					dom: subform?subform:$(document.body),
 					formName: subform.attr('data-subform-name')
 				});
 			}
-			this.subform = Kredito.Page.subform[subform.attr('data-subform-name')];
-			Kredito.Page.subform[subform.attr('data-subform-name')].group[this.get('dom').attr('data-group-name')] = this;
+			this.subform = Bv.Page.subform[subform.attr('data-subform-name')];
+			Bv.Page.subform[subform.attr('data-subform-name')].group[this.get('dom').attr('data-group-name')] = this;
 		}
 	},
 	show: function(){

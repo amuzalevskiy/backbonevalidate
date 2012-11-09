@@ -1,0 +1,1 @@
+Bv.Field.Text = Bv.Field;

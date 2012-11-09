@@ -1,10 +1,10 @@
 $(function(){
 	
-	Kredito.Page.initFields();
-	Kredito.Page.initGroups();
+	Bv.Page.initFields();
+	Bv.Page.initGroups();
 	
-	for (var i in Kredito.Page.subform) {
-		var form = Kredito.Page.subform[i];
+	for (var i in Bv.Page.subform) {
+		var form = Bv.Page.subform[i];
 		initFields(form);
 	}
 
@@ -15,8 +15,8 @@ function initFields(parentForm){
         /**
          * SHORTCUTS
          */
-	var decorator = Kredito.Field.Decorator,
-	rule = Kredito.Field.Validator.Rule,
+	var decorator = Bv.Field.Decorator,
+	rule = Bv.Field.Validator.Rule,
 	field = parentForm.field,
 	group = parentForm.group;
 	
@@ -51,14 +51,14 @@ function initFields(parentForm){
                                 currentField.addValidationRule(new rule.lenBetween({
                                     from: 6,
                                     to: 9,
-                                    message: kredito.translations[kredito.translations.currentLang].js_validation_msg12
+                                    message: Bv.translations[Bv.translations.currentLang].js_validation_msg12
                                 }));
 				break;
 
 			case "email":
 
 				currentField.addDecorator(new decorator.infotooltip({
-					text: kredito.translations[kredito.translations.currentLang].js_validation_msg28
+					text: Bv.translations[Bv.translations.currentLang].js_validation_msg28
 				}));
 				currentField.addValidationRule('notEmpty');
 				currentField.addValidationRule('email');
@@ -67,32 +67,32 @@ function initFields(parentForm){
 
 			case "email_confirm":				
 				currentField.addDecorator(new decorator.infotooltip({
-					text: kredito.translations[kredito.translations.currentLang].js_validation_msg29
+					text: Bv.translations[Bv.translations.currentLang].js_validation_msg29
 				}));
 				currentField.addValidationRule('notEmpty');
 				currentField.addValidationRule(new rule.equalTo({
 					compareWith: field.email, 
-					message: kredito.translations[kredito.translations.currentLang].js_validation_msg10
+					message: Bv.translations[Bv.translations.currentLang].js_validation_msg10
 				}));
 				break;
 				
 			case "birthdate":
 				currentField.addDecorator(new decorator.datePicker({
 					options: {
-						yearRange: "1900:" + Kredito.Today.getFullYear()
+						yearRange: "1900:" + Bv.Today.getFullYear()
 					}
 				}));
 				currentField.addValidationRule('notEmpty');
 				currentField.addValidationRule('date');
 				currentField.addValidationRule(new rule.dateCheck({
-					to: new Date(Kredito.Today.getFullYear()-18, Kredito.Today.getMonth(), Kredito.Today.getDate()),
-					message: kredito.translations[kredito.translations.currentLang].js_validation_msg11
+					to: new Date(Bv.Today.getFullYear()-18, Bv.Today.getMonth(), Bv.Today.getDate()),
+					message: Bv.translations[Bv.translations.currentLang].js_validation_msg11
 				}));
 				break;
 				
 			case "birthplace":
 				currentField.get('dom').autocomplete({
-					source:Kredito.Data.searchFromStartBy(Kredito.Data.cities, 10)
+					source:Bv.Data.searchFromStartBy(Bv.Data.cities, 10)
 				});
 				currentField.addValidationRule('notEmpty');
 				break;
@@ -114,14 +114,14 @@ function initFields(parentForm){
 			case "mobilephone":
 				currentField.setGroup(group.mobilephone);
 				currentField.addDecorator(new decorator.infotooltip({
-					text: kredito.translations[kredito.translations.currentLang].js_validation_msg30
+					text: Bv.translations[Bv.translations.currentLang].js_validation_msg30
 				}));
 				currentField.addValidationRule('notEmpty');
 				currentField.addValidationRule('digits');
 				currentField.addValidationRule(new rule.lenBetween({
 					from: 6,
 					to: 9,
-					message: kredito.translations[kredito.translations.currentLang].js_validation_msg12
+					message: Bv.translations[Bv.translations.currentLang].js_validation_msg12
 				}));
 				break;
 

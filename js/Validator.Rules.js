@@ -1,8 +1,8 @@
-Kredito.Field.Validator.Rule = {
+Bv.Field.Validator.Rule = {
 	proto: Backbone.Model.extend({
 		defaults: {
 			field: null,
-			message: kredito.translations[kredito.translations.currentLang].js_validation_msg1,
+			message: Bv.translations[Bv.translations.currentLang].js_validation_msg1,
 			isValid: undefined,
 			isAjaxRequestGoing: false,
 			allowEmpty: true,
@@ -33,7 +33,7 @@ Kredito.Field.Validator.Rule = {
 	}),
 	
 	initRules: function () {
-		var rules = Kredito.Field.Validator.Rule;
+		var rules = Bv.Field.Validator.Rule;
 			
 		rules.len = rules.proto.extend({
 			isValid: function (v) {
@@ -60,7 +60,7 @@ Kredito.Field.Validator.Rule = {
 				return v;
 			},
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg2
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg2
 			}
 		});
 
@@ -69,7 +69,7 @@ Kredito.Field.Validator.Rule = {
 				return jQuery.trim(v).length > 0;
 			},
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg3
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg3
 			}
 		});
 		rules.notZero = rules.proto.extend({
@@ -77,7 +77,7 @@ Kredito.Field.Validator.Rule = {
 				return jQuery.trim(v) != "0";
 			},
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg4 ,
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg4 ,
 				allowEmpty: false
 			}
 		});
@@ -90,7 +90,7 @@ Kredito.Field.Validator.Rule = {
 			defaults: {
 				from: 0,
 				to: 0,
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg5
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg5
 			}
 		});
 		
@@ -130,7 +130,7 @@ Kredito.Field.Validator.Rule = {
 			},
 			defaults: {
 				length: 0,
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg6
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg6
 			}
 		});
 			
@@ -145,28 +145,28 @@ Kredito.Field.Validator.Rule = {
 			
 		rules.email = rules.regexp.extend({
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg7,
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg7,
 				test: /^((([a-zA-Z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-zA-Z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-zA-Z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-zA-Z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-zA-Z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-zA-Z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/
 			}
 		});
 
 		rules.emailcase = rules.regexp.extend({
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_email_case,
+				message: Bv.translations[Bv.translations.currentLang].js_email_case,
 				test: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/
 			}
 		});
 
 		rules.date = rules.regexp.extend({
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg8,
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg8,
 				test: /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/
 			}
 		});
 		
 		rules.dateCheck = rules.proto.extend({
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_validation_msg9,
+				message: Bv.translations[Bv.translations.currentLang].js_validation_msg9,
 				from: new Date(1900,01,01),
 				to: new Date() // today
 			},
@@ -192,9 +192,9 @@ Kredito.Field.Validator.Rule = {
 				rules.dateCheck.prototype.initialize.call(this);				
 			},
 			defaults: {
-				message: kredito.translations[kredito.translations.currentLang].js_text_2,
-				from: Kredito.Today, // today
-				to: new Date(Kredito.Today.getFullYear()+100, Kredito.Today.getMonth(), Kredito.Today.getDate())
+				message: Bv.translations[Bv.translations.currentLang].js_text_2,
+				from: Bv.Today, // today
+				to: new Date(Bv.Today.getFullYear()+100, Bv.Today.getMonth(), Bv.Today.getDate())
 			}
 		});
 		
@@ -293,4 +293,4 @@ Kredito.Field.Validator.Rule = {
 	}
 }
 
-Kredito.Field.Validator.Rule.initRules();
+Bv.Field.Validator.Rule.initRules();

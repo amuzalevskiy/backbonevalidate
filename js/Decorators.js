@@ -1,7 +1,7 @@
 
-Kredito.Field.Decorator = {};
+Bv.Field.Decorator = {};
 
-Kredito.Field.Decorator.datePicker = Backbone.Model.extend({
+Bv.Field.Decorator.datePicker = Backbone.Model.extend({
 	defaults: {
 		field: null,
 		options: {}
@@ -18,7 +18,7 @@ Kredito.Field.Decorator.datePicker = Backbone.Model.extend({
 	}
 })
 
-Kredito.Field.Decorator.onlyDigits = Backbone.Model.extend({
+Bv.Field.Decorator.onlyDigits = Backbone.Model.extend({
 	initialize: function(){
 		this.on('change:field', function(){
 			if (!this.get('field')) {
@@ -31,7 +31,7 @@ Kredito.Field.Decorator.onlyDigits = Backbone.Model.extend({
 	}
 })
 
-Kredito.Field.Decorator.passwordValidate = Backbone.Model.extend({
+Bv.Field.Decorator.passwordValidate = Backbone.Model.extend({
 	initialize: function(){
 		this.on('change:field', function(){
 			if (!this.get('field')) {
@@ -44,7 +44,7 @@ Kredito.Field.Decorator.passwordValidate = Backbone.Model.extend({
 	}
 })
 
-Kredito.Field.Decorator.focus = Backbone.Model.extend({
+Bv.Field.Decorator.focus = Backbone.Model.extend({
 	defaults: {
 		field: null
 	},
@@ -72,7 +72,7 @@ Kredito.Field.Decorator.focus = Backbone.Model.extend({
 	}
 });
 
-Kredito.Field.Decorator.validateOnBlur = Backbone.Model.extend({
+Bv.Field.Decorator.validateOnBlur = Backbone.Model.extend({
 	initialize: function(){
 		this.on('change:field', function(){
 			if (!this.get('field')) {
@@ -88,7 +88,7 @@ Kredito.Field.Decorator.validateOnBlur = Backbone.Model.extend({
 		}, this);		
 	}
 });
-Kredito.Field.Decorator.helper = Backbone.Model.extend({
+Bv.Field.Decorator.helper = Backbone.Model.extend({
 	defaults: {
 		field: null,
 		text: "",
@@ -165,7 +165,7 @@ Kredito.Field.Decorator.helper = Backbone.Model.extend({
 			this.helper = $(this.elmHtml);
 			this.helper.html(this.get('text'));
 			this.helper.hide();
-			if (Kredito.isMobile) {
+			if (Bv.isMobile) {
 				if (this.get('isGroup')) {
 					_.each(t.get('field').getValidator().fields,function(val,key){
 						val.get('dom').parent().append(t.helper);
@@ -192,8 +192,8 @@ Kredito.Field.Decorator.helper = Backbone.Model.extend({
 	}
 });
 
-Kredito.Field.Decorator.infotooltip = Kredito.Field.Decorator.helper.extend({
-	elmHtml: '<div class="kredito-field-tooltip field-tooltip field-tooltip-info"></div>',
+Bv.Field.Decorator.infotooltip = Bv.Field.Decorator.helper.extend({
+	elmHtml: '<div class="Bv-field-tooltip field-tooltip field-tooltip-info"></div>',
 	dependsFromField: "change:hasFocus change:isValidated",
 	dependFromThis: "change:always",
 	animationTime: 250,
@@ -225,11 +225,11 @@ Kredito.Field.Decorator.infotooltip = Kredito.Field.Decorator.helper.extend({
 	}
 });
 
-Kredito.Field.Decorator.errortooltip = Kredito.Field.Decorator.infotooltip.extend({
+Bv.Field.Decorator.errortooltip = Bv.Field.Decorator.infotooltip.extend({
 	defaults: {
 		isVisible: false
 	},
-	elmHtml: '<div class="kredito-field-tooltip field-tooltip field-tooltip-invalid"></div>',
+	elmHtml: '<div class="Bv-field-tooltip field-tooltip field-tooltip-invalid"></div>',
 	dependsFromField: false,
 	dependsFromThis: "change:isVisible",
 	isShown: function(field){
@@ -238,7 +238,7 @@ Kredito.Field.Decorator.errortooltip = Kredito.Field.Decorator.infotooltip.exten
 });
 
 
-Kredito.Field.Decorator.icon = Kredito.Field.Decorator.helper.extend({
+Bv.Field.Decorator.icon = Bv.Field.Decorator.helper.extend({
 	defaults: {
 		state: "hidden",
 		text: "",
@@ -284,7 +284,7 @@ Kredito.Field.Decorator.icon = Kredito.Field.Decorator.helper.extend({
 		var t=this;
 		this.constructor.__super__.initialize.apply(this, arguments);
 		this.on('change:state', function(){
-			if (Kredito.isMobile) {
+			if (Bv.isMobile) {
 				if (this.get('isGroup')) {
 
 					_.each(t.get('field').getValidator().fields,function(val,key){

@@ -1,6 +1,6 @@
 
 
-Kredito.Page = {
+Bv.Page = {
 	field: {},
 	group: {},
 	subform:{},
@@ -16,14 +16,14 @@ Kredito.Page = {
 	initFields: function(){
 		var t = this;
 		$("input[type=text], input[type=password], input[type=hidden]").each(function(){
-			t.field[this.name] = new Kredito.Field.Text({
+			t.field[this.name] = new Bv.Field.Text({
 				dom:$(this)
 			});
 			t.field[this.name].registerInSubform();
 		});
 		
 		$("select").each(function(){
-			t.field[this.name] = new Kredito.Field.Select({
+			t.field[this.name] = new Bv.Field.Select({
 				dom:$(this)
 			});
 			t.field[this.name].registerInSubform();
@@ -34,7 +34,7 @@ Kredito.Page = {
 			subformName = $(this).parents('.fields-subform').attr('data-subform-name');
 			
 			if (typeof t.field[this.name + '_' + subformName] == 'undefined') {
-				t.field[this.name + '_' + subformName] = new Kredito.Field.Radio({
+				t.field[this.name + '_' + subformName] = new Bv.Field.Radio({
 					name:this.name
 				});
 			}
@@ -43,7 +43,7 @@ Kredito.Page = {
 		});
 		
 		$("input[type=checkbox]").each(function(){
-			t.field[this.name] = new Kredito.Field.Checkbox({
+			t.field[this.name] = new Bv.Field.Checkbox({
 				dom:$(this)
 			});
 			t.field[this.name].registerInSubform();
@@ -52,7 +52,7 @@ Kredito.Page = {
 	initGroups: function(){
 		var t = this;
 		$(".field-group").each(function(){
-			t.group[$(this).attr('data-group-name')] = new Kredito.Field.Group({
+			t.group[$(this).attr('data-group-name')] = new Bv.Field.Group({
 				dom: $(this)
 			});
 			t.group[$(this).attr('data-group-name')].registerInSubform();
@@ -88,16 +88,16 @@ Kredito.Page = {
 		if (typeof e.preventDefault ==='undefined'){
 			e = this;
 			var isDeferredEvent = true;
-			Kredito.Page.removeAjaxCallBackFunction(e);
+			Bv.Page.removeAjaxCallBackFunction(e);
 		}
-		Kredito.Page.validate();
-		if(!Kredito.Page.isValid()) {
+		Bv.Page.validate();
+		if(!Bv.Page.isValid()) {
 			e.preventDefault();
-			Kredito.Util.showFormErrorMessage();
+			Bv.Util.showFormErrorMessage();
 		} else {
-			var fnName = 'step' + Kredito.Page.step;
-			if (typeof Kredito.Page.ValidateForm[fnName] == 'function') {
-				Kredito.Page.ValidateForm[fnName].call(Kredito.Page, e);
+			var fnName = 'step' + Bv.Page.step;
+			if (typeof Bv.Page.ValidateForm[fnName] == 'function') {
+				Bv.Page.ValidateForm[fnName].call(Bv.Page, e);
 			}
 		}
 		if(isDeferredEvent){
