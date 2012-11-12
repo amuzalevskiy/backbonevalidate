@@ -1,4 +1,4 @@
-Bv.Rule.isChecked = Bv.Rule.proto.extend({
+Bv.Rule.isChecked = Bv.Rule.extend({
     isValid: function (v) {
         return v;
     },

@@ -1,4 +1,4 @@
-Bv.Rule.between = Bv.Rule.proto.extend({
+Bv.Rule.between = Bv.Rule.extend({
     isValid: function (v) {
         v = parseFloat(jQuery.trim(v));
         return v >= this.get('from') && v <= this.get('to');

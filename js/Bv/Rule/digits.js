@@ -1,4 +1,4 @@
-Bv.Rule.digits = Bv.Rule.proto.extend({
+Bv.Rule.digits = Bv.Rule.extend({
     isValid: function (v) {
         return /^[0-9]+$/.test(jQuery.trim(v));
     },

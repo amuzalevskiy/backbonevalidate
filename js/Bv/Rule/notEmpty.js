@@ -1,4 +1,4 @@
-Bv.Rule.notEmpty = Bv.Rule.proto.extend({
+Bv.Rule.notEmpty = Bv.Rule.extend({
     isValid: function (v) {
         return jQuery.trim(v).length > 0;
     },

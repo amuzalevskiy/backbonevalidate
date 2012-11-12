@@ -1,5 +1,5 @@
 	
-Bv.Rule.server = Bv.Rule.proto.extend({
+Bv.Rule.server = Bv.Rule.extend({
     defaults: {
         url: function(){
             alert('Please specify url fn')

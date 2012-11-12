@@ -1,4 +1,4 @@
-Bv.Rule.equalTo = Bv.Rule.proto.extend({
+Bv.Rule.equalTo = Bv.Rule.extend({
     isValid: function (v) {
         return v == this.get('compareWith').get('value');
     },

@@ -1,4 +1,4 @@
-Bv.Rule.dateBetween = Bv.Rule.proto.extend({
+Bv.Rule.dateBetween = Bv.Rule.extend({
     defaults: {
         message: Bv.translations[Bv.translations.currentLang].js_validation_msg9,
         from: new Date(1900,01,01),

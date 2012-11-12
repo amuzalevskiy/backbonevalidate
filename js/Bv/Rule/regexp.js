@@ -1,4 +1,4 @@
-Bv.Rule.regexp = Bv.Rule.proto.extend({
+Bv.Rule.regexp = Bv.Rule.extend({
     isValid: function (v) {
         return this.get('test').test(jQuery.trim(v));
     },
