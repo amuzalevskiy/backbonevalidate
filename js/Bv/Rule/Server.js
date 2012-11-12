@@ -1,5 +1,4 @@
-	
-Bv.Rule.server = Bv.Rule.extend({
+Bv.Rule.Server = Bv.Rule.extend({
     defaults: {
         url: function(){
             alert('Please specify url fn')

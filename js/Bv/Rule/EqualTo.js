@@ -1,4 +1,4 @@
-Bv.Rule.equalTo = Bv.Rule.extend({
+Bv.Rule.EqualTo = Bv.Rule.extend({
     isValid: function (v) {
         return v == this.get('compareWith').get('value');
     },

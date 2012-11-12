@@ -1,4 +1,4 @@
-Bv.Rule.lenBetween = Bv.Rule.extend({
+Bv.Rule.LenBetween = Bv.Rule.extend({
     isValid: function (v) {
         var len = jQuery.trim(v).length;
         return len >= this.get('from') && len <= this.get('to');

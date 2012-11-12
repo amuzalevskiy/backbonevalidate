@@ -1,4 +1,4 @@
-Bv.Rule.len = Bv.Rule.extend({
+Bv.Rule.Len = Bv.Rule.extend({
     isValid: function (v) {
         return jQuery.trim(v).length == this.get("length");
     },
