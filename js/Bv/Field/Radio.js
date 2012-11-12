@@ -1,6 +1,7 @@
 Bv.Field.Radio = Bv.Field.extend({
     inputs: null,
     isValueChangeTriggered: false,
+    
     initialize: function () {
         this.inputs = [];
                 

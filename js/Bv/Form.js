@@ -1,154 +1,53 @@
-Bv.Form = {
+Bv.Form = Backbone.Model.extend({
     /**
      * Field access by name
      */
     field: {},
-    group: {},
+    state: "NOT_VALIDATED", // NOT_VALIDATED, PARTIALLY VALIDATED, VALIDATING, VALID
+    
+    initialize: function () {
+        this.initFields();
+    },
     
     applyTemplate: function(template){
         
-    }
-}
-
-Bv.Page = {
-    field: {},
-    subform:{},
-    step: 0,
-    ValidateForm:{
-        step2: function(e){
-        // something here
-        },
-        step3: function(e){
-        }
     },
-
+    
     initFields: function(){
-        var t = this;
-        $("input[type=text], input[type=password], input[type=hidden]").each(function(){
+        var t = this, dom = this.get('dom');
+        dom.find("input[type=text], input[type=password], input[type=hidden]").each(function(){
             t.field[this.name] = new Bv.Field.Text({
                 dom:$(this)
             });
-            t.field[this.name].registerInSubform();
         });
 		
-        $("select").each(function(){
+        dom.find("select").each(function(){
             t.field[this.name] = new Bv.Field.Select({
                 dom:$(this)
             });
-            t.field[this.name].registerInSubform();
         });
 		
-        $("input[type=radio]").each(function(){
-            // radiogroups should be different for each subform
-            subformName = $(this).parents('.fields-subform').attr('data-subform-name');
-			
-            if (typeof t.field[this.name + '_' + subformName] == 'undefined') {
-                t.field[this.name + '_' + subformName] = new Bv.Field.Radio({
+        dom.find("input[type=radio]").each(function(){
+            if (typeof t.field[this.name] == 'undefined') {
+                t.field[this.name] = new Bv.Field.Radio({
                     name:this.name
                 });
             }
-            t.field[this.name + '_' + subformName].addRadioInput($(this));
-            t.field[this.name + '_' + subformName].registerInSubform();
+            t.field[this.name].addRadioInput($(this));
         });
 		
-        $("input[type=checkbox]").each(function(){
+        dom.find("input[type=checkbox]").each(function(){
             t.field[this.name] = new Bv.Field.Checkbox({
                 dom:$(this)
             });
-            t.field[this.name].registerInSubform();
         });
     },
-    initGroups: function(){
-        var t = this;
-        $(".field-group").each(function(){
-            t.group[$(this).attr('data-group-name')] = new Bv.Field.Group({
-                dom: $(this)
+    
+    validateAll: function(){
+        for(var name in this.field) {
+            this.field[name].set({
+                isValidated: true
             });
-            t.group[$(this).attr('data-group-name')].registerInSubform();
-        });
-    },
-    validate: function(){
-        for(var formName in this.subform) {
-            for(var name in this.subform[formName].field) {
-                this.subform[formName].field[name].set({
-                    isValidated: true
-                });
-            }
         }
-    },
-    getSubformCount: function(){
-        var counter = 0;
-        for(var i in this.subform) {
-            counter++;
-        }
-        return counter;
-    },
-
-    findFieldsWithAjaxRequests: function(){
-        for(var field in this.field) {
-            if (this.field[field].getValidator().isAjaxRequest()){
-                return true
-            }
-        }
-        return false
-    },
-
-    validationForm: function (e){
-        if (typeof e.preventDefault ==='undefined'){
-            e = this;
-            var isDeferredEvent = true;
-            Bv.Page.removeAjaxCallBackFunction(e);
-        }
-        Bv.Page.validate();
-        if(!Bv.Page.isValid()) {
-            e.preventDefault();
-            Bv.Util.showFormErrorMessage();
-        } else {
-            var fnName = 'step' + Bv.Page.step;
-            if (typeof Bv.Page.ValidateForm[fnName] == 'function') {
-                Bv.Page.ValidateForm[fnName].call(Bv.Page, e);
-            }
-        }
-        if(isDeferredEvent){
-            $('#registration-form-submit').click();
-        }
-
-
-
-    },
-
-    addAjaxCallBackFunction: function(onChange,e){
-        for(var field in this.field) {
-            if (this.field[field].getValidator().isAjaxRequest()){
-                for(var rules in this.field[field].getValidator().rules) {
-                    this.removeAjaxCallBackFunction(e);
-                    this.field[field].getValidator().rules[rules] .on('change:isAjaxRequestGoing', this.validationForm, e);
-                    e.preventDefault();
-                }
-            }
-        }
-    },
-    removeAjaxCallBackFunction: function(e){
-        for(var field in this.field) {
-            for(var rules in this.field[field].getValidator().rules) {
-                this.field[field].getValidator().rules[rules].off('change:isAjaxRequestGoing', this.validationForm);
-            }
-        }
-    },
-
-    isValid: function(){
-        for(var formName in this.subform) {
-            if (this.subform[formName].isVisible || formName == 'undefined'){
-                for(var name in this.subform[formName].field) {
-                    if (! this.subform[formName].field[name].get('dom').is(':visible')) {
-                        continue;
-                    }
-                    if ( !this.subform[formName].field[name].getValidator().isValid()) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
     }
-};
+});

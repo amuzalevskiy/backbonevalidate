@@ -1,1 +1,1 @@
-Bv.Field.Decorator = {};
+Bv.Decorator = {};

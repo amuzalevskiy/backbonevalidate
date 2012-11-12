@@ -1,4 +1,5 @@
 Bv.Decorator.OnlyDigits = Backbone.Model.extend({
+
     initialize: function(){
         this.on('change:field', function(){
             if (!this.get('field')) {
@@ -9,4 +10,5 @@ Bv.Decorator.OnlyDigits = Backbone.Model.extend({
 
         this.trigger("change:field");
     }
+    
 })

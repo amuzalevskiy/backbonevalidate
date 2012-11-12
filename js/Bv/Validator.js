@@ -1,4 +1,3 @@
-
 Bv.Validator = Backbone.Model.extend({
     defaults:{
         tooltip: null,
@@ -43,7 +42,7 @@ Bv.Validator = Backbone.Model.extend({
             if (this.fields[i].get('isValidated'))
                 return true;
         }
-        return false;		
+        return false;
     },
     isValid: function () {
         for (var i in this.rules) {
@@ -61,8 +60,8 @@ Bv.Validator = Backbone.Model.extend({
     },
     isValidNotAsyncForField: function (field) {
         for (var i in this.rules) {
-            if (!this.rules[i].get('isValid') 
-                && !this.rules[i].isAsync 
+            if (!this.rules[i].get('isValid')
+                && !this.rules[i].isAsync
                 && this.rules[i].get('field') == field)
                 return false;
         }
@@ -102,7 +101,7 @@ Bv.Validator = Backbone.Model.extend({
             this.get('icon').set({
                 state: 'invalid'
             });
-            return;			
+            return;
         }
         // valid and all is ok
         this.get('tooltip').set({

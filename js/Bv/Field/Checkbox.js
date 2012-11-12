@@ -1,6 +1,5 @@
 Bv.Field.Checkbox = Bv.Field.extend({
-    inputs: null,
-    isValueChangeTriggered: false,
+
     initialize: function () {
         this.decoratorObjects = [];
         this.validatorObjects = [];
@@ -17,8 +16,9 @@ Bv.Field.Checkbox = Bv.Field.extend({
     },
     
     trackFocus: function () {
+        Bv.Field.prototype.trackFocus.call(this);
         
-        this.prototype.trackFocus.call(this);
+        var t = this;
         
         this.on('change:value', function () {
             if (!t.get('wasBlur')) {

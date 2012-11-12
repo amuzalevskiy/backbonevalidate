@@ -3,174 +3,106 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
+    <head>
 
-	<title>Bv24 - Weź pożyczkę!</title>    <meta name="viewport" content="width=device-width">
-    <meta name="google-site-verification" content="ibaFsqJ-km8Z7wqRMFCHU9iXPAvk4X10uymZS7wtyII" />
-    <link rel="shortcut icon" href="/media/favicon.ico" />
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta http-equiv="cache-control" content="max-age=0, must-revalidate" />
-<meta name="robots" content="noindex, follow" />
-<link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+        <title>BV</title> 
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-<script type="text/javascript" src="js/lib/jquery.js"></script>
-<script type="text/javascript" src="js/lib/jquery.numeric.js"></script>
-<script type="text/javascript" src="js/lib/jquery.password.validate.js"></script>
-<script type="text/javascript" src="js/lib/json2.js"></script>
-<script type="text/javascript" src="js/lib/underscore.js"></script>
-<script type="text/javascript" src="js/lib/backbone.js"></script>
-<script type="text/javascript" src="js/related/translations.js"></script>
+        <!-- libraries include -->
+        <script type="text/javascript" src="js/lib/jquery.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.numeric.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.password.validate.js"></script>
+        <script type="text/javascript" src="js/lib/json2.js"></script>
+        <script type="text/javascript" src="js/lib/underscore.js"></script>
+        <script type="text/javascript" src="js/lib/backbone.js"></script>
 
 
-<script type="text/javascript" src="js/Fields.js"></script>
-<script type="text/javascript" src="js/Validator.js"></script>
-<script type="text/javascript" src="js/Validator.Rules.js"></script>
-<script type="text/javascript" src="js/Decorators.js"></script>
-<script type="text/javascript" src="js/Page.js"></script>
-<script type="text/javascript" src="js/init.js"></script>
+        <!-- msin include -->
+        <script type="text/javascript" src="js/Bv/Field.js"></script>
+        <script type="text/javascript" src="js/Bv/Form.js"></script>
+        <script type="text/javascript" src="js/Bv/Rule.js"></script>
+        <script type="text/javascript" src="js/Bv/Validator.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator.js"></script>
 
+        <script type="text/javascript" src="js/Bv/Field/Text.js"></script>
+        <script type="text/javascript" src="js/Bv/Field/Select.js"></script>
+        <script type="text/javascript" src="js/Bv/Field/Radio.js"></script>
+        <script type="text/javascript" src="js/Bv/Field/Checkbox.js"></script>
+        <script type="text/javascript" src="js/Bv/Field/Date.js"></script>
 
-</head>
+        <script type="text/javascript" src="js/Bv/Decorator/Helper.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/Icon.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/InfoTooltip.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/ErrorTooltip.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/Focus.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/ValidateOnBlur.js"></script>
+        
+        <script type="text/javascript" src="js/Bv/Decorator/DatePicker.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/OnlyDigits.js"></script>
+        
+        <script type="text/javascript" src="js/init.js"></script>
 
-<body>
+        <style>
+            label {
+                display: block;
+                width: 150px;
+                float: left;
+            }
+            .field-wrap{
+                width: 100%;
+                clear: both;
+            }
+            
+            input[type=radio] {
+                float: left;
+            }
+            
+            .radio-item {
+                width: 100%;
+                clear: both;
+            }
+        </style>
 
-<div id="body" class="body body-registration step-2">
+    </head>
 
-	<div id="page">
-		<div class="main-container">
-			<div class="main-content">
-				<div class="box-reg">
-					<form action="/reg/step2" method="post" id="reg-step2" enctype="multipart/form-data">
-						<div class="center">
-
-                                                    
-
-                                                    
-                                                    
-<!----------------------------------------------------------------------------->
-
-
-<legend class="first">Dane personalne</legend>
-<fieldset>
-    <ul>
-        <li class="field-item field-group" data-group-name="prename">
-            <label for="prename" class="field-label">Imię</label>            <div>
-                <div class="field-box field-text-box">
-                    
-<input type="text" name="prename" id="f-prename" value="" maxlength="32" placeholder="Pierwsze  imię" title="Pierwsze  imię" class="field-text" separator="" />                </div>
-                <div class="field-box field-text-box">
-		            
-<input type="text" name="prename_part" id="f-prename_part" value="" maxlength="32" placeholder="Drugie imię" title="Drugie imię" class="field-text" separator="" />                </div>
-
+    <body>
+        <form id="main">
+            <div class="field-wrap">
+                <label for="name">Name</label>
+                <input name="name" id="name" type="text" />
             </div>
-        </li>
-        <li class="field-item field-group" data-group-name="lastname">
-		    <label for="lastname" class="field-label">Nazwisko</label>            <div>
-                <div class="field-box field-text-box">
-				    
-<input type="text" name="lastname" id="f-lastname" value="" maxlength="32" placeholder="Nazwisko" title="Nazwisko" class="field-text" separator="" />                </div>
-                <div class="field-box field-text-box">
-				    
-<input type="text" name="lastname_part" id="f-lastname_part" value="" maxlength="32" placeholder="Drugi człon" title="Drugi człon" class="field-text" separator="" />                </div>
+
+            <div class="field-wrap">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
             </div>
-        </li>
-    </ul>
-</fieldset>
 
-<fieldset>
-    <ul>
-        <li class="field-item">
-            
-    			<label for="email" class="field-label">Adres e-mail</label>
-    			<div class="field-box field-text-box ">
-<input type="text" name="email" id="f-email" value="" maxlength="250" class="field-text" separator="" /></div>
-                    </li>
-        <li class="field-item">
-            
-    			<label for="email_confirm" class="field-label">Proszę powtórzyć adres e-mail</label>
-    			<div class="field-box field-text-box ">
-<input type="text" name="email_confirm" id="f-email_confirm" value="" maxlength="250" class="field-text" separator="" /></div>
-                    </li>
-    </ul>
-</fieldset>
-<fieldset>
-    <ul>
-        <li class="field-item field-group field-wide" data-group-name="mobilephone">
-            <label for="mobilephone" class="field-label">Telefon komórkowy</label>			
-<input type="hidden" name="mobilephone_prefix" value="" class="field-hidden" separator="" id="f-mobilephone_prefix" />            <div class="field-box field-text-box">
-                
-<input type="text" name="mobilephone" id="f-mobilephone" value="" maxlength="9" class="field-text" separator="" />            </div>
-        </li>
-
-        <li class="field-item">
-            
-    			<label for="has_financephone" class="field-label">Czy posiadasz telefon stacjonarny?</label>
-    			<div class="field-box field-radio-box ">
-<label for="f-has_financephone-0"><input type="radio" name="has_financephone" id="f-has_financephone-0" value="0" checked="checked" class="field-radio" />Nie</label><label for="f-has_financephone-1"><input type="radio" name="has_financephone" id="f-has_financephone-1" value="1" class="field-radio" />Tak</label></div>
-                    </li>
-        <li class="field-item field-group" data-group-name="financephone">
-            <label for="phone_prefix" class="field-label">Telefon stacjonarny</label>            <div>
-                <div class="field-box field-text-box">
-                    
-<input type="text" name="phone_prefix" id="f-phone_prefix" value="" placeholder="Nr kieunkowy" maxlength="2" title="Nr kieunkowy" class="field-text" separator="" />                </div>
-                <div class="field-box field-text-box">
-                    
-<input type="text" name="phone" id="f-phone" value="" placeholder="Telefon" maxlength="7" title="Telefon" class="field-text" separator="" />                </div>
+            <div class="field-wrap">
+                <label for="isBob">Are you Bob?</label>
+                <input name="isBob" id="isBob" type="checkbox" />
             </div>
-        </li>
-    </ul>
-</fieldset>
-<fieldset>
-    <ul>
-        <li class="field-item">
-            
-    			<label for="password1" class="field-label">Wybierz  hasło*</label>
-    			<div class="field-box field-password-box ">
-<input type="password" name="password1" id="f-password1" value="" maxlength="16" class="field-password" separator="" /></div>
-            
-        </li>
-        <li class="password-tip"><span class="field-label">*Hasło musi zawierać minimum 6 znaków </span</li>
-        <li class="field-item">
-            
-    			<label for="password2" class="field-label">Potwierdź  wybrane  hasło</label>
-    			<div class="field-box field-password-box ">
-<input type="password" name="password2" id="f-password2" value="" maxlength="16" class="field-password" separator="" /></div>
-                    </li>
-    </ul>
-</fieldset>
-<fieldset>
-    <ul>
-        <li class="field-item field-group agb" data-group-name="agb">
-            <div class="field-box field-text-box" style="margin-top: 7px;">
-                
-<input type="hidden" name="agb" value="0" /><input type="checkbox" name="agb" id="f-agb" value="1" />                <label for="f-agb">
-                    Oświadczam, że przeczytałem i zrozumiałem <a class="emph" target="_blank" href="http://www.Bv24.pl/content/polityka-prywatnosci">Politykę prywatności</a>                 </label>
+
+            <div class="field-wrap">
+                <label>Do you have cat or dog?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input name="catOrDog" type="radio" value="cat_only" id="cat_only" /><label for="cat_only">Cat only</label>
+                    </div>
+                    <div class="radio-item">
+                        <input name="catOrDog" type="radio" value="dog_only" id="dog_only" /><label for="dog_only">Dog only</label>
+                    </div>
+                    <div class="radio-item">
+                        <input name="catOrDog" type="radio" value="cat_and_dog" id="cat_and_dog" /><label for="cat_and_dog">Cat and dog</label>
+                    </div>
+                    <div class="radio-item">
+                        <input name="catOrDog" type="radio" value="no_animals" id="no_animals" /><label for="no_animals">No animals at all</label>
+                    </div>
+                </div>
             </div>
-        </li>
-    </ul>
-</fieldset>
 
-
-
-
-
-<!----------------------------------------------------------------------------->
-
-
-
-
-
-
-								</div>
-							</div>
-						</form>
-					</div>
-				<div class="clear">&nbsp;</div>
-			</div>
-		</div>
-		<div class="main-bottom-padding">&nbsp;</div>
-	</div>
-</div>
-
-</body>
+        </form>
+    </body>
 </html>

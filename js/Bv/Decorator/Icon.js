@@ -1,5 +1,5 @@
 
-Bv.Decorator.Icon = Bv.Decorator.helper.extend({
+Bv.Decorator.Icon = Bv.Decorator.Helper.extend({
     defaults: {
         state: "hidden",
         text: "",

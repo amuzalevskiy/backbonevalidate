@@ -15,7 +15,7 @@ Bv.Field = Backbone.Model.extend({
         isValid: true,
         hasFocus: false,
         wasBlur: false,
-        decorators: 'focus validateOnBlur',
+        decorators: 'Focus ValidateOnBlur',
         fnIsEmpty: function(val) {
             if (typeof val == 'undefined') {
                 return true;
@@ -26,11 +26,14 @@ Bv.Field = Backbone.Model.extend({
     },
     decoratorObjects: [],
     validatorObjects: [],
+    
     initialize: function () {
+        var field = this.get('dom');
+        
         this.decoratorObjects = [];
         this.validatorObjects = [];
 
-        this.trackValue(this.get('dom'));
+        this.trackValue(field);
 		
         this.trackFocus();
         
@@ -44,6 +47,7 @@ Bv.Field = Backbone.Model.extend({
     },
     
     trackValue: function (field) {
+        var t = this;
         field.on('focus change keyup blur click', function(){
             if (field.val() != t.get('value')) {
                 t.set({
@@ -83,6 +87,7 @@ Bv.Field = Backbone.Model.extend({
             }
         });  
     },
+    
     initDecorators: function () {
         if (this.get('decorators') != '') {
             var decorators = this.get('decorators').split(' ');
@@ -92,9 +97,10 @@ Bv.Field = Backbone.Model.extend({
             }
         }
     },
+    
     addDecorator: function(decorator){
         if($.isFunction(decorator.substring)){
-            decorator = new Bv.Field.Decorator[decorator];
+            decorator = new Bv.Decorator[decorator];
         }
         decorator.set({
             field:this
@@ -103,9 +109,10 @@ Bv.Field = Backbone.Model.extend({
 		
         return decorator;
     },
+    
     addValidationRule: function(rule){
         if($.isFunction(rule.substring)){
-            rule = new Bv.Field.Validator.Rule[rule];
+            rule = new Bv.Validator.Rule[rule];
         }
 		
         rule.set({
@@ -115,9 +122,11 @@ Bv.Field = Backbone.Model.extend({
         this.getValidator().addRule(rule);
         this.getValidator().addField(this);
     },
+    
     setValidator: function(validator){
         this.validator = validator;
     },
+    
     getValidator: function(){
         if (typeof this.validator == 'undefined') {
             this.validator = new Validator(); //!;
@@ -125,6 +134,7 @@ Bv.Field = Backbone.Model.extend({
         }
         return this.validator;
     },
+    
     setValue: function(value, validate){
         this.get('dom').val(value);
         this.set({

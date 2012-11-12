@@ -1,12 +1,8 @@
 $(function(){
 	
-	Bv.Page.initFields();
-	Bv.Page.initGroups();
-	
-	for (var i in Bv.Page.subform) {
-		var form = Bv.Page.subform[i];
-		initFields(form);
-	}
+	window.cForm = new Bv.Form({
+            dom:$("#main")
+        });
 
 });
 

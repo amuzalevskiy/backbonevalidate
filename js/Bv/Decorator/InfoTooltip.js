@@ -1,4 +1,4 @@
-Bv.Decorator.InfoTooltip = Bv.Decorator.helper.extend({
+Bv.Decorator.InfoTooltip = Bv.Decorator.Helper.extend({
     elmHtml: '<div class="Bv-field-tooltip field-tooltip field-tooltip-info"></div>',
     dependsFromField: "change:hasFocus change:isValidated",
     dependFromThis: "change:always",
