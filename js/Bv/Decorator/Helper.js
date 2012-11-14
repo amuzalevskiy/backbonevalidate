@@ -76,20 +76,10 @@ Bv.Decorator.Helper = Backbone.Model.extend({
             this.helper = $(this.elmHtml);
             this.helper.html(this.get('text'));
             this.helper.hide();
-            if (Bv.isMobile) {
-                if (this.get('isGroup')) {
-                    _.each(t.get('field').getValidator().fields,function(val,key){
-                        val.get('dom').parent().append(t.helper);
-                    })
-                }else{
-                    t.get('field').get('dom').parent().find(".field-box").append(this.helper);
-                }
-            } else {
-                if (this.get('isGroup')) {
-                    t.get('field').get('dom').prepend(this.helper);
-                }else{
-                    t.get('field').get('dom').parent().prepend(this.helper);
-                }
+            if (this.get('isGroup')) {
+                t.get('field').get('dom').prepend(this.helper);
+            }else{
+                t.get('field').get('dom').parent().prepend(this.helper);
             }
 
             this.helper.click(function(){

@@ -20,6 +20,7 @@
         <!-- msin include -->
         <script type="text/javascript" src="js/Bv/Field.js"></script>
         <script type="text/javascript" src="js/Bv/Form.js"></script>
+        <script type="text/javascript" src="js/Bv/Dictionary.js"></script>
         <script type="text/javascript" src="js/Bv/Rule.js"></script>
         <script type="text/javascript" src="js/Bv/Validator.js"></script>
         <script type="text/javascript" src="js/Bv/Decorator.js"></script>
@@ -31,8 +32,8 @@
         <script type="text/javascript" src="js/Bv/Field/Date.js"></script>
 
         <script type="text/javascript" src="js/Bv/Decorator/Helper.js"></script>
-        <script type="text/javascript" src="js/Bv/Decorator/Icon.js"></script>
         <script type="text/javascript" src="js/Bv/Decorator/InfoTooltip.js"></script>
+        <script type="text/javascript" src="js/Bv/Decorator/Icon.js"></script>
         <script type="text/javascript" src="js/Bv/Decorator/ErrorTooltip.js"></script>
         <script type="text/javascript" src="js/Bv/Decorator/Focus.js"></script>
         <script type="text/javascript" src="js/Bv/Decorator/ValidateOnBlur.js"></script>
@@ -74,6 +75,34 @@
             .radio-item {
                 width: 100%;
                 clear: both;
+            }
+
+            .field-tooltip{
+                position: absolute;
+                border: solid 1px gray;
+                padding: 3px;
+                margin: 0 2px;
+                background: white;
+            }
+
+            .field-tooltip-info{
+                border: solid 1px green;
+            }
+
+            .field-tooltip-invalid{
+                border: solid 1px red;
+            }
+
+            .field-icon{
+                position: absolute;
+                height: 16px;
+                width: 16px;
+            }
+            .field-icon-invalid{
+                background: red;
+            }
+            .field-icon-valid{
+                background: green;
             }
         </style>
 

@@ -1,7 +1,6 @@
 Bv.Rule = Backbone.Model.extend({
     defaults: {
         field: null,
-        translator: null,
         isValid: undefined,
         isAjaxRequestGoing: false,
         allowEmpty: true,
@@ -13,19 +12,36 @@ Bv.Rule = Backbone.Model.extend({
     },
     
     initialize: function(){
-        var rule = this;
         this.on("change:field", function(){
-            var field = this.get('field');
-            
-            field.on("change:value", function(){
-                var val = field.get('value'),
-                isValid = rule.isValid(val) || (this.get('allowEmpty') && jQuery.trim(val) == '');
+            this.get('field').on("change:value", this.makeCheck, this);
+            this.addDependencies();
+        }, this);
+    },
+    
+    getMessage: function (dictionary) {
+        if (this.has('message')) {
+            return this.get('message');
+        }
+        
+        if (dictionary.has('message')) {
+            return dictionary.get('message');
+        }
+        
+        return "DEV: No message set";
+    },
+    
+    makeCheck: function(){
+        var field = this.get('field'),
+        val = field.get('value'),
+        isValid = this.isValid(val) || (field.get('allowEmpty') && jQuery.trim(val) == '');
                 
-                rule.set({
-                    isValid: isValid
-                });
-            }, field);
+        this.set({
+            isValid: isValid
         });
-        this.trigger("change:field");
+    },
+    
+    // to override
+    addDependencies: function (){
+        
     }
 });

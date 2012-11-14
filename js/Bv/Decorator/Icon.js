@@ -1,5 +1,5 @@
 
-Bv.Decorator.Icon = Bv.Decorator.Helper.extend({
+Bv.Decorator.Icon = Bv.Decorator.InfoTooltip.extend({
     defaults: {
         state: "hidden",
         text: "",
@@ -11,15 +11,6 @@ Bv.Decorator.Icon = Bv.Decorator.Helper.extend({
     isPositionSet: false,
     isShown: function(field){
         return this.get('state') != 'hidden' || this.get('state') != '';
-    },
-    setPosition: function(){
-        if(!this.isPositionSet){
-            this.getHelper().css({
-                right: 37, 
-                top: 4
-            });
-            this.isPositionSet = true;
-        }
     },
     getHelper: function(){
         if (this.helper == false) {
@@ -45,18 +36,6 @@ Bv.Decorator.Icon = Bv.Decorator.Helper.extend({
         var t=this;
         this.constructor.__super__.initialize.apply(this, arguments);
         this.on('change:state', function(){
-            if (Bv.isMobile) {
-                if (this.get('isGroup')) {
-
-                    _.each(t.get('field').getValidator().fields,function(val,key){
-                        val.get('dom').closest(".field-box").removeClass('field-box-invalid field-box-hidden field-box-loading field-box-invalid field-box-valid').addClass('field-box-' + t.get('state'));
-                    })
-
-                }else{
-                    this.get('field').get('dom').find(".field-box").removeClass('field-box-invalid field-box-hidden field-box-loading field-box-invalid field-box-valid').addClass('field-box-' + this.get('state'));
-                }
-
-            }
             this.getHelper().attr('class', 'field-icon field-icon-' + this.get('state'));
         }, this);
     }

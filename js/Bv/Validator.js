@@ -1,7 +1,8 @@
 Bv.Validator = Backbone.Model.extend({
     defaults:{
         tooltip: null,
-        icon: null
+        icon: null,
+        dictionary: Bv.Dictionary
     },
     rules: null,
     fields: null,
@@ -68,9 +69,10 @@ Bv.Validator = Backbone.Model.extend({
         return true;
     },
     getFirstMessage: function () {
+        var dictionary = this.get('dictionary');
         for (var i in this.rules) {
             if (!this.rules[i].get('isValid'))
-                return this.rules[i].get('message');
+                return this.rules[i].getMessage(dictionary);
         }
         return "";
     },

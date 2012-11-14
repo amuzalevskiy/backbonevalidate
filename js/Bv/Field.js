@@ -112,7 +112,7 @@ Bv.Field = Backbone.Model.extend({
     
     addValidationRule: function(rule){
         if($.isFunction(rule.substring)){
-            rule = new Bv.Validator.Rule[rule];
+            rule = new Bv.Rule[rule];
         }
 		
         rule.set({
@@ -129,8 +129,10 @@ Bv.Field = Backbone.Model.extend({
     
     getValidator: function(){
         if (typeof this.validator == 'undefined') {
-            this.validator = new Validator(); //!;
-            this.decoratorObjects = [];
+            this.validator = new Bv.Validator({
+                tooltip: this.addDecorator('ErrorTooltip'),
+                icon: this.addDecorator('Icon')
+            });
         }
         return this.validator;
     },

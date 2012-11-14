@@ -1,9 +1,18 @@
 $(function(){
 	
-	window.cForm = new Bv.Form({
+	var cForm = new Bv.Form({
             dom:$("#main")
         });
-
+        cForm.field.name.addDecorator(new Bv.Decorator.InfoTooltip({text:"asdf"}));
+        cForm.field.name.addValidationRule('NotEmpty');
+        cForm.field.isBob.addValidationRule(new (Bv.Rule.extend({
+            isValid: function (v) {
+                return !!v == (cForm.field.name.get('value').toLowerCase() == 'bob');
+            },
+            addDependencies: function () {
+                cForm.field.name.on("change:value", this.makeCheck, this);
+            }
+        })));
 });
 
 function initFields(parentForm){
